@@ -8,10 +8,10 @@ void Application::Create()
 	_Manager = _Device->getSceneManager();		//Get scene manager
 
 	/* Create camera */
-	_Camera = _Manager->addCameraSceneNodeFPS();
+	//_Camera = _Manager->addCameraSceneNodeFPS();
 
 	/* Create Heightmap */
-	WorldGenerator::Create(100, 100, "Heightmap.png", 10);
+	WorldGenerator::Create(1213, 1729, "Heightmap.png",50);
 }
 
 void Application::Run()
