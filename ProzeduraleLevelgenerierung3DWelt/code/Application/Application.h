@@ -21,4 +21,6 @@ class Application
 
 		/* User */
 		irr::scene::ICameraSceneNode *_Camera;
+		irr::scene::ITerrainSceneNode *_Terrain;
+		irr::scene::ILightSceneNode *_Light;
 };
