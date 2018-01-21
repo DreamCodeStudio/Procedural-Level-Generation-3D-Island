@@ -4,9 +4,11 @@
 void Application::Create()
 {
 	/* Create window */
-	_Device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1920, 1080), 16U, false, false, true, 0);
+	_Device = irr::createDevice(irr::video::EDT_DIRECT3D9, irr::core::dimension2d<irr::u32>(1920, 1080), 16U, false, false, true, 0);
 	_Driver = _Device->getVideoDriver();		//Get video driver
 	_Manager = _Device->getSceneManager();		//Get scene manager
+
+	_Driver->setAmbientLight(irr::video::SColor(150, 150, 150, 150));
 
 	/* Load config */
 	this->LoadConfig();
@@ -87,7 +89,6 @@ void Application::LoadConfig()
 	_LightPositionY = atoi(File[12].c_str());
 	_LightPositionZ = atoi(File[13].c_str());
 
-	std::cout << File[14] << std::endl;
 	if (File[14] == "true")
 	{
 		_LightIsFollowing = true;
@@ -145,6 +146,7 @@ void Application::CreateWorld()
 
 	_Terrain->setPosition(irr::core::vector3df(_Terrain->getPosition().X + (_Terrain->getPosition().X - _Terrain->getBoundingBox().getCenter().X), 0, _Terrain->getPosition().Z + (_Terrain->getPosition().Z - _Terrain->getBoundingBox().getCenter().Z)));
 	_Terrain->setMaterialTexture(0, _Driver->getTexture("Data\\hill_texture.jpg"));
+	
 
 	/* ############################## Create Light ############################## */
 	_Light = _Manager->addLightSceneNode(0, irr::core::vector3df(200, 1500, 200), irr::video::SColor(255, 255, 255, 255), _LightRadius, -1);
@@ -156,10 +158,10 @@ void Application::CreateWorld()
 		irr::core::dimension2d<irr::f32>(0, 0),
 		irr::core::dimension2d<irr::f32>(100, 100));
 
-
 	_WaterSurface = _Manager->addWaterSurfaceSceneNode(_HillMesh, _WaterWaveHeight, _WaterWaveSpeed, _WaterWaveLength, 0, -1, irr::core::vector3df(0, 0, 0), irr::core::vector3df(0, 0, 0), irr::core::vector3df(_WaterScaleX, 1, _WaterScaleZ));
 	_WaterSurface->setPosition(irr::core::vector3df(_WaterSurface->getPosition().X + (_WaterSurface->getPosition().X - _WaterSurface->getBoundingBox().getCenter().X), _WaterHeight, _WaterSurface->getPosition().Z - (_WaterSurface->getPosition().Z - _WaterSurface->getBoundingBox().getCenter().Z)));
 	_WaterSurface->setMaterialTexture(0, _Driver->getTexture("Data\\stones.jpg"));
 	_WaterSurface->setMaterialTexture(1, _Driver->getTexture("Data\\water.jpg"));
 	_WaterSurface->setMaterialType(irr::video::EMT_REFLECTION_2_LAYER);
+	_WaterSurface->setMaterialFlag(irr::video::EMF_ANISOTROPIC_FILTER, true);
 }
