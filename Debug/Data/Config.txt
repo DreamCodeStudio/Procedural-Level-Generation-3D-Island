@@ -12,7 +12,7 @@ WaterScaleX 1
 WaterScaleZ 1
 
 #The height where the ocean spawns. If the value is higher more landscape will be underwater
-WaterHeight 600
+WaterHeight 1000
 
 #Wave settings
 WaterWaveLength 100
@@ -21,7 +21,15 @@ WaterWaveSpeed 800
 
 ################################ Light ################################
 #The light follows the camera. You can adjust how far it lights. The light has also a natural fall of.
-LightRadius 4000
+LightRadius 5000
+
+#The position of the light source
+LightPositionX 200
+LightPositionY 1500
+LightPositionZ 200
+
+#If the light should follow the camera. (Light position gets ignored if turned to "true")
+LightIsFollowing false
 
 ################################ Camera ################################
 #The target point of the camera

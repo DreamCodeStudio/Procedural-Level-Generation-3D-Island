@@ -18,6 +18,7 @@ class Application
 	private:
 
 		void LoadConfig();
+		void CreateWorld();
 
 		/* Create window */
 		irr::IrrlichtDevice *_Device;
@@ -46,6 +47,8 @@ class Application
 
 		/* Light */
 		int _LightRadius;
+		int _LightPositionX, _LightPositionY, _LightPositionZ;
+		bool _LightIsFollowing;
 
 		/* World */
 		int _WorldMapSizeX, _WorldMapSizeZ;
