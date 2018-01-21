@@ -17,6 +17,8 @@ class Application
 
 	private:
 
+		void LoadConfig();
+
 		/* Create window */
 		irr::IrrlichtDevice *_Device;
 		irr::video::IVideoDriver *_Driver;
@@ -32,10 +34,11 @@ class Application
 		/* Config */
 		
 		/* Water */
-		int _WaterTileSizeX, _WaterTileSizeY;
-		int _WaterTileAmountX, _WaterTileAmountY;
-		int _WaterScaleX, _WaterScaleY;
+		int _WaterTileSizeX, _WaterTileSizeZ;
+		int _WaterTileAmountX, _WaterTileAmountZ;
+		int _WaterScaleX, _WaterScaleZ;
 		int _WaterWaveLength, _WaterWaveHeight, _WaterWaveSpeed;
+		int _WaterHeight;
 
 		/* Camera */
 		float _CameraTargetX, _CameraTargetY, _CameraTargetZ;
@@ -45,7 +48,7 @@ class Application
 		int _LightRadius;
 
 		/* World */
-		int _WorldMapSizeX, _WorldMapSizeY;
+		int _WorldMapSizeX, _WorldMapSizeZ;
 		int _WorldScaleX, _WorldScaleY, _WorldScaleZ;
 		int _WorldPeakDistance;
 		int _WorldSmoothFactor;

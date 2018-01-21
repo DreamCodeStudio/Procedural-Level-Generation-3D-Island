@@ -45,4 +45,9 @@
       <Filter>Headerdateien\Application\WorldGenerator</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Debug\Config.txt">
+      <Filter>Headerdateien</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

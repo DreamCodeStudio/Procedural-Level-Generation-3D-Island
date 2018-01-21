@@ -124,6 +124,9 @@
     <ClInclude Include="code\Application\Application.h" />
     <ClInclude Include="code\Application\WorldGenerator\WorldGenerator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Debug\Config.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
