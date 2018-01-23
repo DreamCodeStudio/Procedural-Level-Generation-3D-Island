@@ -10,6 +10,8 @@ void Application::Create()
 
 	_Driver->setAmbientLight(irr::video::SColor(150, 150, 150, 150));
 
+	_Manager->addSkyDomeSceneNode(_Driver->getTexture("Data\\skydome2.jpg"), 128U, 64U, 1, 1.03f, 1000, 0, -1);
+
 	/* Load config */
 	this->LoadConfig();
 
@@ -41,7 +43,7 @@ void Application::LoadConfig()
 	std::cout << "Loading config... " << std::endl;
 	std::vector<std::string> File;
 
-	std::ifstream read("Data\\Config.txt");
+	std::ifstream read("Config.dat");
 	if (!read)
 	{
 		std::cout << "Can not find config file!" << std::endl;
