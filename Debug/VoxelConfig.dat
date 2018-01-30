@@ -1,0 +1,57 @@
+################################ Ocean settings ################################
+#The ocean consists of several tiles. How big should one tile be ?
+WaterTileSizeX 500
+WaterTileSizeZ 500
+
+#The amount of tiles the ocean should consist of
+WaterTileAmountX 200
+WaterTileAmountZ 200
+
+#Scale of the ocean
+WaterScaleX 1
+WaterScaleZ 1
+
+#The height where the ocean spawns. If the value is higher more landscape will be underwater 
+WaterHeight 100
+
+#Wave settings
+WaterWaveLength 100
+WaterWaveHeight 50
+WaterWaveSpeed 800
+
+################################ Light ################################
+#You can adjust how far it lights. The light has also a natural fall of.
+LightRadius 9000
+
+#The position of the light source 200 1500 200
+LightPositionX 200
+LightPositionY 0
+LightPositionZ 200
+
+#If the light should follow the camera. (Light position gets ignored if turned to "true")
+LightIsFollowing false
+
+################################ Camera ################################
+#The target point of the camera
+CameraTargetX 0
+CameraTargetY 0
+CameraTargetZ 0
+
+#Defines how big the distance is between camera and target point 6000
+CameraDistance 1500
+
+################################ World ################################
+#Defines how big the generated heightmap is (in pixels) 2500
+WorldMapSizeX 500
+WorldMapSizeZ 500
+
+#Scale of the world 3 8 3
+WorldScaleX 3
+WorldScaleY 2
+WorldScaleZ 3
+
+#The minimal distance between two hills. Lower this value to get a fissured landscape. 200
+WorldPeakDistance 28
+
+#For smoothing the world edges 
+WorldSmoothFactor 0

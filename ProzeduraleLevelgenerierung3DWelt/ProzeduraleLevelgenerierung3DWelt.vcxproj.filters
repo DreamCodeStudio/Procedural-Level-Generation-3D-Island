@@ -25,6 +25,12 @@
     <Filter Include="Quelldateien\Application\WorldGenerator">
       <UniqueIdentifier>{80934051-b93d-4b14-af66-a6f4948210ba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headerdateien\IVoxelTerrainSceneNode">
+      <UniqueIdentifier>{ebbf87ed-9851-4844-89df-df1edd3d2cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\IVoxelTerrainSceneNode">
+      <UniqueIdentifier>{0fd4ab4f-00ef-4ca2-a12a-ac70aa00e1c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="code\main.cpp">
@@ -36,6 +42,9 @@
     <ClCompile Include="code\Application\WorldGenerator\WorldGenerator.cpp">
       <Filter>Quelldateien\Application\WorldGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="code\IVoxelTerrainSceneNode\IVoxelTerrainSceneNode.cpp">
+      <Filter>Quelldateien\IVoxelTerrainSceneNode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Application\Application.h">
@@ -43,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="code\Application\WorldGenerator\WorldGenerator.h">
       <Filter>Headerdateien\Application\WorldGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="code\IVoxelTerrainSceneNode\IVoxelTerrainSceneNode.h">
+      <Filter>Headerdateien\IVoxelTerrainSceneNode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ WaterTileAmountZ 200
 WaterScaleX 1
 WaterScaleZ 1
 
-#The height where the ocean spawns. If the value is higher more landscape will be underwater
+#The height where the ocean spawns. If the value is higher more landscape will be underwater 
 WaterHeight 700
 
 #Wave settings
@@ -55,3 +55,10 @@ WorldPeakDistance 200
 
 #For smoothing the world edges 
 WorldSmoothFactor 0
+
+#Use World-voxel generation. The whole world will be made out of cubes. 
+#Please note that the value for WorldMapSizeX/Y should be lower than 500 because of heavy performance impacts
+WorldVoxelUsage falses
+
+#The size of a single cube in the world (will be ignored if WorldVoxelUsage is false)
+WorldCubeSize 200

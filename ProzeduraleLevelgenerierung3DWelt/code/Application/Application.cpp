@@ -64,32 +64,32 @@ void Application::LoadConfig()
 	/* ################################ Ocean settings ################################ */
 
 	/* The ocean consists of several tiles.How big should one tile be ? */
-	_WaterTileSizeX = atoi(File[0].c_str());
-	_WaterTileSizeZ = atoi(File[1].c_str());
+	_WaterTileSizeX = atof(File[0].c_str());
+	_WaterTileSizeZ = atof(File[1].c_str());
 
 	/* The amount of tiles the ocean should consist of */
-	_WaterTileAmountX = atoi(File[2].c_str());
-	_WaterTileAmountZ = atoi(File[3].c_str());
+	_WaterTileAmountX = atof(File[2].c_str());
+	_WaterTileAmountZ = atof(File[3].c_str());
 
 	/* Scale of the ocean */
-	_WaterScaleX = atoi(File[4].c_str());
-	_WaterScaleZ = atoi(File[5].c_str());
+	_WaterScaleX = atof(File[4].c_str());
+	_WaterScaleZ = atof(File[5].c_str());
 
 	/* The height where the ocean spawns.If the value is higher more landscape will be underwater */
-	_WaterHeight = atoi(File[6].c_str());
+	_WaterHeight = atof(File[6].c_str());
 
 	/* Wave settings */
-	_WaterWaveLength = atoi(File[7].c_str());
-	_WaterWaveHeight = atoi(File[8].c_str());
-	_WaterWaveSpeed = atoi(File[9].c_str());
+	_WaterWaveLength = atof(File[7].c_str());
+	_WaterWaveHeight = atof(File[8].c_str());
+	_WaterWaveSpeed = atof(File[9].c_str());
 
 	/* ################################ Light ################################ */
 	/* The light follows the camera.You can adjust how far it lights.The light has also a natural fall of. */
-	_LightRadius = atoi(File[10].c_str());
+	_LightRadius = atof(File[10].c_str());
 
-	_LightPositionX = atoi(File[11].c_str());
-	_LightPositionY = atoi(File[12].c_str());
-	_LightPositionZ = atoi(File[13].c_str());
+	_LightPositionX = atof(File[11].c_str());
+	_LightPositionY = atof(File[12].c_str());
+	_LightPositionZ = atof(File[13].c_str());
 
 	if (File[14] == "true")
 	{
@@ -102,28 +102,41 @@ void Application::LoadConfig()
 
 	/* ################################ Camera ################################ */
 	/* The target point of the camera */
-	_CameraTargetX = atoi(File[15].c_str());
-	_CameraTargetY = atoi(File[16].c_str());
-	_CameraTargetZ = atoi(File[17].c_str());
+	_CameraTargetX = atof(File[15].c_str());
+	_CameraTargetY = atof(File[16].c_str());
+	_CameraTargetZ = atof(File[17].c_str());
 
 	/* Defines how big the distance is between camera and target point */
-	_CameraDistance = atoi(File[18].c_str());
+	_CameraDistance = atof(File[18].c_str());
 
 	/* ################################ World ################################ */
 	/* Defines how big the generated heightmap is(in pixels) */
-	_WorldMapSizeX = atoi(File[19].c_str());
-	_WorldMapSizeZ = atoi(File[20].c_str());
+	_WorldMapSizeX = atof(File[19].c_str());
+	_WorldMapSizeZ = atof(File[20].c_str());
 
 	/* Scale of the world */
-	_WorldScaleX = atoi(File[21].c_str());
-	_WorldScaleY = atoi(File[22].c_str());
-	_WorldScaleZ = atoi(File[23].c_str());
+	_WorldScaleX = atof(File[21].c_str());
+	_WorldScaleY = atof(File[22].c_str());
+	_WorldScaleZ = atof(File[23].c_str());
 
 	/* The minimal distance between two hills.Lower this value to get a fissured landscape. */
-	_WorldPeakDistance = atoi(File[24].c_str());
+	_WorldPeakDistance = atof(File[24].c_str());
 
 	/* For smoothing the world edges  */
-	_WorldSmoothFactor = atoi(File[25].c_str());
+	_WorldSmoothFactor = atof(File[25].c_str());
+
+	/* If the world should be made out of cubes */
+	if (File[26] == "true")
+	{
+		_WorldVoxelUsage = true;
+	}
+	else
+	{
+		_WorldVoxelUsage = false;
+	}
+
+	/* The size of a single cube (ignored if normal world creation is turned on) */
+	_WorldCubeSize = atof(File[27].c_str());
 
 	std::cout << "Loaded!" << std::endl;
 }
@@ -139,16 +152,22 @@ void Application::CreateWorld()
 	WorldGenerator::Create(_WorldMapSizeX, _WorldMapSizeZ, "Data\\Heightmap.png", _WorldPeakDistance);
 
 	/* ############################## Create Terrain based on the Heightmap ############################## */
-	_Terrain = _Manager->addTerrainSceneNode("Data\\Heightmap.png", 0, -1,
-		irr::core::vector3df(0, 0, 0),
-		irr::core::vector3df(0, 0, 0),
-		irr::core::vector3df(_WorldScaleX, _WorldScaleY, _WorldScaleZ),
-		irr::video::SColor(255, 255, 255, 255), 5,
-		irr::scene::E_TERRAIN_PATCH_SIZE::ETPS_129, _WorldSmoothFactor, false);
+	if (!_WorldVoxelUsage)
+	{
+		_Terrain = _Manager->addTerrainSceneNode("Data\\Heightmap.png", 0, -1,
+												irr::core::vector3df(0, 0, 0),
+												irr::core::vector3df(0, 0, 0),
+												irr::core::vector3df(_WorldScaleX, _WorldScaleY, _WorldScaleZ),
+												irr::video::SColor(255, 255, 255, 255), 5,
+												irr::scene::E_TERRAIN_PATCH_SIZE::ETPS_129, _WorldSmoothFactor, false);
 
-	_Terrain->setPosition(irr::core::vector3df(_Terrain->getPosition().X + (_Terrain->getPosition().X - _Terrain->getBoundingBox().getCenter().X), 0, _Terrain->getPosition().Z + (_Terrain->getPosition().Z - _Terrain->getBoundingBox().getCenter().Z)));
-	_Terrain->setMaterialTexture(0, _Driver->getTexture("Data\\hill_texture.jpg"));
-	
+		_Terrain->setPosition(irr::core::vector3df(_Terrain->getPosition().X + (_Terrain->getPosition().X - _Terrain->getBoundingBox().getCenter().X), 0, _Terrain->getPosition().Z + (_Terrain->getPosition().Z - _Terrain->getBoundingBox().getCenter().Z)));
+		_Terrain->setMaterialTexture(0, _Driver->getTexture("Data\\hill_texture.jpg"));
+	}
+	else
+	{
+		IVoxelTerrainSceneNode *Terrain = new IVoxelTerrainSceneNode(_Manager, irr::core::vector3df(_WorldScaleX, _WorldScaleY, _WorldScaleZ), "Data\\Heightmap.png", _WorldMapSizeX, _WorldMapSizeZ, _WorldCubeSize);
+	}
 
 	/* ############################## Create Light ############################## */
 	_Light = _Manager->addLightSceneNode(0, irr::core::vector3df(200, 1500, 200), irr::video::SColor(255, 255, 255, 255), _LightRadius, -1);

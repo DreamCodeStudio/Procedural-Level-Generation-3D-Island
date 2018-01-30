@@ -1,4 +1,5 @@
 ﻿  main.cpp
+  IVoxelTerrainSceneNode.cpp
   WorldGenerator.cpp
   Application.cpp
   Code wird generiert...

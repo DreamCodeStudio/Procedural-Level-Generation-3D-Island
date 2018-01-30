@@ -4,6 +4,9 @@
 /* WorldGenerator */
 #include "WorldGenerator\WorldGenerator.h"
 
+/* VoxelSceneNode */
+#include "../IVoxelTerrainSceneNode/IVoxelTerrainSceneNode.h"
+
 /* For loading config file */
 #include <fstream>
 
@@ -37,9 +40,9 @@ class Application
 		/* Water */
 		int _WaterTileSizeX, _WaterTileSizeZ;
 		int _WaterTileAmountX, _WaterTileAmountZ;
-		int _WaterScaleX, _WaterScaleZ;
-		int _WaterWaveLength, _WaterWaveHeight, _WaterWaveSpeed;
-		int _WaterHeight;
+		float _WaterScaleX, _WaterScaleZ;
+		float _WaterWaveLength, _WaterWaveHeight, _WaterWaveSpeed;
+		float _WaterHeight;
 
 		/* Camera */
 		float _CameraTargetX, _CameraTargetY, _CameraTargetZ;
@@ -52,9 +55,12 @@ class Application
 
 		/* World */
 		int _WorldMapSizeX, _WorldMapSizeZ;
-		int _WorldScaleX, _WorldScaleY, _WorldScaleZ;
+		float _WorldScaleX, _WorldScaleY, _WorldScaleZ;
 		int _WorldPeakDistance;
 		int _WorldSmoothFactor;
+
+		bool _WorldVoxelUsage;
+		float _WorldCubeSize;
 		
 
 };

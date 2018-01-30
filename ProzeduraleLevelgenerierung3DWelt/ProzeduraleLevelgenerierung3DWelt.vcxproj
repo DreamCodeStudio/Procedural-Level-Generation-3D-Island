@@ -118,11 +118,13 @@
   <ItemGroup>
     <ClCompile Include="code\Application\Application.cpp" />
     <ClCompile Include="code\Application\WorldGenerator\WorldGenerator.cpp" />
+    <ClCompile Include="code\IVoxelTerrainSceneNode\IVoxelTerrainSceneNode.cpp" />
     <ClCompile Include="code\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="code\Application\Application.h" />
     <ClInclude Include="code\Application\WorldGenerator\WorldGenerator.h" />
+    <ClInclude Include="code\IVoxelTerrainSceneNode\IVoxelTerrainSceneNode.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Debug\Config.txt" />
